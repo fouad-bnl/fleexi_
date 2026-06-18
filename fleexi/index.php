@@ -41,7 +41,6 @@ $resultat = mysqli_query($conn, $sql);
 <header>
     <h1>Fleexi</h1>
     <nav>
-        <a href="index.php">Accueil</a>
         <?php if (isset($_SESSION['id_user'])) { ?>
             <a href="annonces/creer.php">Deposer une annonce</a>
             <a href="annonces/mes_annonces.php">Mes annonces</a>
