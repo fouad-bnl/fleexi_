@@ -314,6 +314,10 @@ form select {
     transition: all 0.3s;
 }
 
+form select[name="categorie"] option {
+    background: #000;
+}
+
 form input:focus,
 form textarea:focus,
 form select:focus {
