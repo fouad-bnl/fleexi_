@@ -59,7 +59,7 @@ $resultat = mysqli_query($conn, $sql);
 <div class="contenu">
     <h2>Toutes les annonces</h2>
 
-    <form method="GET">
+    <form method="GET" class="filtre-form">
         <input type="number" name="prix_min" placeholder="Prix minimum">
         <input type="number" name="prix_max" placeholder="Prix maximum">
         <select name="categorie">
@@ -70,8 +70,10 @@ $resultat = mysqli_query($conn, $sql);
             <option value="Vetements">Vetements</option>
             <option value="Autre">Autre</option>
         </select>
-        <button type="submit" class="bouton">Filtrer</button>
-        <a href="index.php" class="bouton bouton-gris">Reinitialiser</a>
+        <div class="filtre-actions">
+            <button type="submit" class="bouton">Filtrer</button>
+            <a href="index.php" class="bouton bouton-gris">Reinitialiser</a>
+        </div>
     </form>
 
     <br>
