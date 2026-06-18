@@ -1,430 +1,276 @@
-/* Importation de polices futuristes (à ajouter aussi dans ton HTML si besoin, mais le CSS s'en charge) */
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@500;700&display=swap');
-
-/* --- VARIABLES CYBERPUNK --- */
-:root {
-    --neon-bleu: #00f3ff;
-    --neon-violet: #bc13fe;
-    --sombre-fond: #05050a;
-    --texte-clair: #e0eaff;
-    --glass-bg: rgba(10, 10, 20, 0.4);
-    --glass-border: rgba(255, 255, 255, 0.05);
-}
-
-/* --- ANIMATIONS DE FOU --- */
-@keyframes neonPulseBleu {
-    0%, 100% { box-shadow: 0 0 5px var(--neon-bleu), inset 0 0 5px var(--neon-bleu); }
-    50% { box-shadow: 0 0 15px var(--neon-bleu), 0 0 30px var(--neon-bleu), inset 0 0 10px var(--neon-bleu); }
-}
-
-@keyframes neonPulseViolet {
-    0%, 100% { box-shadow: 0 0 5px var(--neon-violet), inset 0 0 5px var(--neon-violet); }
-    50% { box-shadow: 0 0 15px var(--neon-violet), 0 0 30px var(--neon-violet), inset 0 0 10px var(--neon-violet); }
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0px); }
-}
-
-@keyframes backgroundGlitch {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes textGlow {
-    0%, 100% { text-shadow: 0 0 10px var(--neon-violet), 0 0 20px var(--neon-violet); }
-    50% { text-shadow: 0 0 20px var(--neon-bleu), 0 0 40px var(--neon-bleu); }
-}
-
-/* --- STYLE GLOBAL --- */
 body {
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
-    background-color: var(--sombre-fond);
-    color: var(--texte-clair);
-    line-height: 1.6;
-    /* Fond animé avec des halos néons */
-    background: radial-gradient(circle at 15% 50%, rgba(188, 19, 254, 0.15), transparent 30%),
-                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.15), transparent 30%),
-                #05050a;
-    background-size: 200% 200%;
-    animation: backgroundGlitch 15s ease infinite;
-    overflow-x: hidden;
+    background-color: #f7f7f7; /* Gris très clair pour le fond */
+    color: #333333;
+    line-height: 1.5;
 }
 
-/* --- HEADER GLASSMORPHISM --- */
 header {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background-color: #ffffff;
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(188, 19, 254, 0.4);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    border-bottom: 1px solid #e4e4e4; /* Fine bordure au lieu d'une grosse ombre */
 }
 
 header h1 {
     margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    color: #fff;
-    font-size: 28px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    animation: textGlow 3s infinite alternate;
+    color: #005ae0; /* Bleu roi Catawiki */
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    font-weight: 700;
 }
 
 header a {
-    color: var(--texte-clair);
+    color: #333333;
     text-decoration: none;
-    margin-left: 25px;
+    margin-left: 20px;
     font-weight: 600;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    position: relative;
+    font-size: 14px;
+    transition: color 0.2s;
 }
 
-header a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--neon-bleu);
-    transition: width 0.3s ease;
-    box-shadow: 0 0 10px var(--neon-bleu);
+header nav a[href="auth/connexion.php"],
+header nav a[href="auth/inscription.php"] {
+    display: inline-block;
+    background-color: #005ae0;
+    color: #ffffff;
+    padding: 10px 18px;
+    border-radius: 999px;
+    margin-left: 12px;
+    box-shadow: 0 6px 16px rgba(0, 90, 224, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-header a:hover::after {
-    width: 100%;
+header nav a[href="auth/connexion.php"]:hover,
+header nav a[href="auth/inscription.php"]:hover {
+    background-color: #004ac0;
+    color: #ffffff;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 22px rgba(0, 90, 224, 0.32);
 }
 
 header a:hover {
-    color: var(--neon-bleu);
-    text-shadow: 0 0 8px var(--neon-bleu);
+    color: #005ae0;
 }
 
-/* --- BADGES --- */
 .badge {
-    background-color: transparent;
-    color: var(--neon-bleu);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    border: 1px solid var(--neon-bleu);
-    margin-left: 8px;
-    box-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
-    text-shadow: 0 0 5px var(--neon-bleu);
+    background-color: #f0f4ff; /* Fond bleuté très clair */
+    color: #005ae0;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px; /* Bords moins arrondis, plus sérieux */
+    margin-left: 6px;
+    border: 1px solid #cce0ff;
 }
 
-/* --- CONTENU --- */
 .contenu {
-    max-width: 1000px;
-    margin: 40px auto;
+    max-width: 950px;
+    margin: 30px auto;
     padding: 0 20px;
 }
 
 .contenu h2 {
-    font-family: 'Orbitron', sans-serif;
-    border-left: 4px solid var(--neon-violet);
-    padding-left: 15px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px var(--neon-violet);
+    border-left: none; /* On enlève la barre latérale pour un style plus galerie */
+    padding-left: 0;
+    color: #222222;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 24px;
 }
 
-/* --- CARTES EFFET HOLOGRAMME --- */
 .cartes {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
+    gap: 20px;
 }
 
 .carte {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 15px;
-    width: 260px;
-    padding: 15px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation: float 6s ease-in-out infinite;
-}
-
-/* Délai pour que les cartes ne flottent pas toutes en même temps */
-.carte:nth-child(2) { animation-delay: 1s; }
-.carte:nth-child(3) { animation-delay: 2s; }
-
-.carte::before {
-    content: "";
-    position: absolute;
-    top: 0; left: -100%;
-    width: 50%; height: 100%;
-    background: linear-gradient(to right, transparent, rgba(0, 243, 255, 0.2), transparent);
-    transform: skewX(-25deg);
-    transition: all 0.5s ease;
+    background-color: white;
+    border-radius: 8px;
+    width: 250px;
+    padding: 16px;
+    text-align: left; /* Alignement à gauche typique des lots */
+    box-shadow: none;
+    border: 1px solid #e4e4e4; /* Bordure fine grise */
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
 }
 
 .carte:hover {
-    transform: translateY(-10px) scale(1.05);
-    border-color: var(--neon-bleu);
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.3), inset 0 0 15px rgba(0, 243, 255, 0.1);
-}
-
-.carte:hover::before {
-    left: 200%;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 90, 224, 0.12);
+    border-color: #005ae0;
 }
 
 .carte img {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-radius: 10px;
-    filter: contrast(1.2) brightness(0.9);
-    transition: filter 0.3s;
-}
-
-.carte:hover img {
-    filter: contrast(1.3) brightness(1.1) drop-shadow(0 0 8px var(--neon-bleu));
+    border-radius: 4px;
+    margin-bottom: 8px;
 }
 
 .carte h3 {
-    margin: 15px 0 8px 0;
-    font-size: 20px;
-    font-family: 'Orbitron', sans-serif;
-    color: var(--texte-clair);
+    margin: 8px 0;
+    font-size: 15px;
+    color: #333333;
+    font-weight: normal;
+    line-height: 1.4;
 }
 
 .carte .prix {
-    color: var(--neon-violet);
+    color: #222222;
     font-weight: 700;
-    font-size: 24px;
-    margin: 10px 0;
-    text-shadow: 0 0 8px rgba(188, 19, 254, 0.6);
+    font-size: 18px;
+    margin: 12px 0 6px 0;
 }
 
-/* --- BOUTONS CYBERPUNK --- */
 .bouton {
-    display: inline-block;
-    background: transparent;
-    color: var(--neon-bleu);
-    font-family: 'Orbitron', sans-serif;
-    padding: 10px 20px;
-    border: 1px solid var(--neon-bleu);
+    display: block; /* Le bouton prend toute la largeur sur la carte d'enchère */
+    text-align: center;
+    background-color: #005ae0;
+    color: white;
+    padding: 10px 16px;
+    border: none;
     border-radius: 4px;
     text-decoration: none;
     cursor: pointer;
     font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 10px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+    font-weight: 600;
+    margin-top: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .bouton:hover {
-    background: var(--neon-bleu);
-    color: #000;
-    box-shadow: 0 0 15px var(--neon-bleu), 0 0 30px var(--neon-bleu);
-    transform: scale(1.05);
+    background-color: #004ac0;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 18px rgba(0, 90, 224, 0.22);
 }
 
 .bouton-rouge {
-    color: #ff2a2a;
-    border-color: #ff2a2a;
-    box-shadow: 0 0 5px rgba(255, 42, 42, 0.2);
+    background-color: #d12a2f; /* Rouge pour les messages d'erreur ou d'alerte */
 }
 
 .bouton-rouge:hover {
-    background: #ff2a2a;
-    color: #fff;
-    box-shadow: 0 0 15px #ff2a2a, 0 0 30px #ff2a2a;
+    background-color: #a82226;
 }
 
 .bouton-gris {
-    color: #aaa;
-    border-color: #aaa;
+    background-color: #ffffff;
+    color: #333333;
+    border: 1px solid #dcdcdc;
 }
 
 .bouton-gris:hover {
-    background: #aaa;
-    color: #000;
-    box-shadow: 0 0 15px #aaa;
+    background-color: #f7f7f7;
 }
 
-.filtre-form {
-    max-width: 700px;
-}
-
-.filtre-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.filtre-actions .bouton {
-    flex: 1;
-    margin-top: 0;
-    text-align: center;
-}
-
-/* --- FORMULAIRES --- */
 form {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid #e4e4e4;
     max-width: 520px;
-    margin: 0 auto;
 }
 
 form input,
 form textarea,
 form select {
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    color: var(--texte-clair);
-    padding: 12px 15px;
-    margin: 10px 0;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
     box-sizing: border-box;
-    font-size: 15px;
-    font-family: 'Rajdhani', sans-serif;
-    transition: all 0.3s;
-}
-
-form select[name="categorie"] option {
-    background: #000;
+    font-size: 14px;
+    transition: border-color 0.2s;
 }
 
 form input:focus,
 form textarea:focus,
 form select:focus {
-    border-color: var(--neon-violet);
+    border-color: #005ae0;
     outline: none;
-    box-shadow: 0 0 15px rgba(188, 19, 254, 0.3);
-    background: rgba(188, 19, 254, 0.05);
 }
 
-/* --- MESSAGES & DETAILS --- */
+form textarea {
+    min-height: 100px;
+}
+
 .message {
-    background: rgba(255, 208, 0, 0.1);
-    color: #ffd000;
-    border-left: 4px solid #ffd000;
-    padding: 15px;
-    border-radius: 8px;
+    background-color: #f0f4ff;
+    color: #004ac0;
+    border: 1px solid #cce0ff;
+    padding: 12px 16px;
+    border-radius: 4px;
     margin-bottom: 20px;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 15px rgba(255, 208, 0, 0.15);
 }
 
 .detail {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
+    background-color: white;
     padding: 30px;
-    border-radius: 15px;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    border: 1px solid #e4e4e4;
 }
 
 .detail img {
-    max-width: 100%;
-    border-radius: 10px;
-    border: 2px solid rgba(255,255,255,0.1);
+    max-width: 420px;
+    width: 100%;
+    border-radius: 4px;
 }
 
-/* --- CHAT / DISCUSSION FUTURISTE --- */
 .bloc-message {
-    background: rgba(0, 243, 255, 0.05);
-    border-radius: 10px;
-    border-left: 4px solid var(--neon-bleu);
+    background-color: #fcfcfc;
+    border-radius: 4px;
+    border-left: 4px solid #005ae0;
     padding: 16px;
-    margin-bottom: 15px;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+    margin-bottom: 16px;
+    border-top: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
 }
 
 .discussion {
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 15px;
+    background-color: white;
+    border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+    border: 1px solid #e4e4e4;
     max-height: 400px;
     overflow-y: auto;
 }
 
-/* Custom Scrollbar pour la discussion */
-.discussion::-webkit-scrollbar {
-    width: 8px;
-}
-.discussion::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-}
-.discussion::-webkit-scrollbar-thumb {
-    background: var(--neon-violet);
-    border-radius: 4px;
-    box-shadow: 0 0 5px var(--neon-violet);
-}
-
 .msg-moi {
-    background: linear-gradient(135deg, rgba(188, 19, 254, 0.2), rgba(188, 19, 254, 0.4));
-    border: 1px solid var(--neon-violet);
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 20px 20px 4px 20px;
-    margin: 12px 0;
+    background-color: #005ae0;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px 8px 0 8px;
+    margin: 8px 0;
     max-width: 70%;
     margin-left: auto;
-    box-shadow: 0 0 10px rgba(188, 19, 254, 0.2);
 }
 
 .msg-autre {
-    background: linear-gradient(135deg, rgba(0, 243, 255, 0.1), rgba(0, 243, 255, 0.2));
-    border: 1px solid var(--neon-bleu);
-    color: #fff;
-    padding: 12px 18px;
-    border-radius: 20px 20px 20px 4px;
-    margin: 12px 0;
+    background-color: #f0f0f0;
+    color: #333333;
+    padding: 10px 14px;
+    border-radius: 8px 8px 8px 0;
+    margin: 8px 0;
     max-width: 70%;
     margin-right: auto;
-    box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
 }
 
 .msg-qui {
-    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0 0 6px 0;
-    letter-spacing: 1px;
+    margin: 0 0 4px 0;
 }
 
 .msg-date {
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 6px 0 0 0;
-    text-align: right;
+    color: #777777;
+    margin: 4px 0 0 0;
 }
