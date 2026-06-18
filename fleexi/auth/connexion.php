@@ -20,7 +20,7 @@ if (isset($_POST['connecter'])) {
         $utilisateur = mysqli_fetch_assoc($resultat);
 
         if (!$utilisateur) {
-            $message = "Cet email n'existe pas.";
+            $message = "Email ou mot de passe incorrect.";
         } else {
             if (password_verify($mdp, $utilisateur['mdp'])) {
                 $_SESSION['id_user'] = $utilisateur['id'];
@@ -28,7 +28,7 @@ if (isset($_POST['connecter'])) {
                 header("Location: ../index.php");
                 exit();
             } else {
-                $message = "Mot de passe incorrect.";
+                $message = "Email ou mot de passe incorrect.";
             }
         }
     }
