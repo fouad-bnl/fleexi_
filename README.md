@@ -11,7 +11,7 @@ Un utilisateur peut s'inscrire, se connecter, déposer/modifier/supprimer des an
 |----------|-----------------------------------------------|
 | Billal   | Module 1 — Authentification (inscription, connexion, déconnexion) |
 | Anis     | Module 2 — Gestion des annonces (créer, modifier, supprimer, mes annonces) |
-| Fouad    | Module 3 — Affichage public (accueil, détail, design CSS, header, profil, base de donnée) |                                               |
+| Fouad    | Module 3 — Affichage public (accueil, détail, design CSS, header, profil, base de donnée, configuration du GitHub)                        |
 | Mouhand  | Module 4 — Filtrage & Favoris                 |
 | Yanis    | Module 5 — Messagerie                         |
 
@@ -113,6 +113,7 @@ fleexi/
 5. **Filtrer** : sur l'accueil, formulaire prix min / prix max / catégorie.
 6. **Favoris** : sur la page détail d'une annonce → bouton "Ajouter / Retirer des favoris". Consultables dans "Mes favoris".
 7. **Contacter un vendeur** : page détail d'une annonce → écrire un message. Les échanges sont visibles dans "Mes messages".
+
 
 
 
