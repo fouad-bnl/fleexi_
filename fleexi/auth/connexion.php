@@ -32,6 +32,7 @@ if (isset($_POST['connecter'])) {
             }
         }
     }
+
 }
 ?>
 <!DOCTYPE html>
