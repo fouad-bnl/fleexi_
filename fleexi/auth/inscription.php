@@ -9,6 +9,7 @@ if (isset($_POST['inscrire'])) {
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $mdp = $_POST['mdp'];
+    $mdp_confirm = $_POST['mdp_confirm'];
 
     if ($email == "") {
         $message = "L'email est obligatoire.";
@@ -16,6 +17,8 @@ if (isset($_POST['inscrire'])) {
         $message = "Le mot de passe est obligatoire.";
     } else if (strlen($mdp) < 10) {
         $message = "Le mot de passe doit faire au moins 10 caracteres.";
+    } else if ($mdp != $mdp_confirm) {
+        $message = "Les mots de passe ne correspondent pas.";
     } else {
         $check = mysqli_prepare($conn, "SELECT id FROM users WHERE mail = ?");
         mysqli_stmt_bind_param($check, "s", $email);
@@ -60,7 +63,9 @@ if (isset($_POST['inscrire'])) {
         <h2>Inscription</h2>
 
         <?php if ($message != "") { ?>
-            <div class="message"><?php echo $message; ?></div>
+            <div class="message">
+                <?php echo $message; ?>
+            </div>
         <?php } ?>
 
         <form method="POST">
@@ -68,6 +73,7 @@ if (isset($_POST['inscrire'])) {
             <input type="text" name="prenom" placeholder="Prenom">
             <input type="email" name="email" placeholder="Email">
             <input type="password" name="mdp" placeholder="Mot de passe (10 caracteres min)">
+            <input type="password" name="mdp_confirm" placeholder="Confirmez le mot de passe">
             <button type="submit" name="inscrire" class="bouton">S'inscrire</button>
         </form>
     </div>
